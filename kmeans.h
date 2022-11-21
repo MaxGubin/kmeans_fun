@@ -1,3 +1,5 @@
+#ifndef KMEANS_H
+#define KMEANS_H
 #include <algorithm>
 #include <iostream>
 #include "spaces.h"
@@ -43,19 +45,4 @@ vector_search::SpaceMatrix KMeans(const vector_search::SpaceMatrix& vectors_to_c
     return result;
 }
 }
-
-void test() {
-    const int vector_size = 16;
-    const auto dataset = vector_search::SpaceMatrix::Random(100, vector_size);
-    const auto seeds = vector_search::SpaceMatrix::Random(5, vector_size);
-    kmeans::KMeansParams params;
-    const auto clusters = kmeans::KMeans<vector_search::L2Space>(dataset, seeds, params);
-    for (auto result_seed: clusters.rowwise()) {
-        std::cout << result_seed << std::endl;
-    }
-}
-
-int main() {
-    test();
-    return 0;
-}
+#endif
