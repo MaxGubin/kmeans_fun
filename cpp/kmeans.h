@@ -10,6 +10,8 @@ namespace kmeans
     struct KMeansParams
     {
         int num_iterations = 1; /// The number of iterations for KMeans.
+        // A callback function for evaluation.
+        void evaluatePath(const vector_search::SpaceMatrix &vectors_to_cluster, const vector_search::SpaceMatrix &seeds) {};
     };
 
     template <typename DistanceSpace>
@@ -21,8 +23,8 @@ namespace kmeans
         return min_index;
     }
 
-    template <typename DistanceSpace>
-    vector_search::SpaceMatrix KMeans(const vector_search::SpaceMatrix &vectors_to_cluster, const vector_search::SpaceMatrix &seeds, KMeansParams params)
+    template <typename DistanceSpace, typename KMeansParamsType>
+    vector_search::SpaceMatrix KMeans(const vector_search::SpaceMatrix &vectors_to_cluster, const vector_search::SpaceMatrix &seeds, KMeansParamsType params)
     {
         vector_search::SpaceMatrix result = seeds;
         for (int i = 0; i < params.num_iterations; ++i)
@@ -59,6 +61,7 @@ namespace kmeans
                 ++counter_index;
             }
             result.swap(candidates);
+            params.evaluatePath(vectors_to_cluster, result);
         }
         return result;
     }
