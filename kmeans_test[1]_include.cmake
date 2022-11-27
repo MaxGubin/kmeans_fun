@@ -1,0 +1,5 @@
+if(EXISTS "/home/max/work/kmeans/kmeans_fun/kmeans_test[1]_tests.cmake")
+  include("/home/max/work/kmeans/kmeans_fun/kmeans_test[1]_tests.cmake")
+else()
+  add_test(kmeans_test_NOT_BUILT kmeans_test_NOT_BUILT)
+endif()
