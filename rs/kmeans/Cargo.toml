@@ -4,8 +4,14 @@ version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+name="kemans"
+path="src/kmeans.rs"
+test=true
+
 
 [dependencies]
-ndarray
-ndarray-rand
-rand
+ndarray={}
+ndarray-rand={}
+rand={}
+rand_isaac={}
